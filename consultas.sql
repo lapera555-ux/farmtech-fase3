@@ -1,0 +1,44 @@
+-- FarmTech Solutions - Fase 3
+-- Pedro Vinicius Gomes dos Santos
+-- RM571446
+-- Turma 1TIAOB-2026
+
+-- 1. Consulta geral da tabela importada
+SELECT * FROM SENSORES_FARMTECH;
+
+-- 2. Leituras com umidade baixa
+SELECT *
+FROM SENSORES_FARMTECH
+WHERE UMIDADE < 40;
+
+-- 3. Média de umidade por cultura
+SELECT CULTURA, AVG(UMIDADE) AS MEDIA_UMIDADE
+FROM SENSORES_FARMTECH
+GROUP BY CULTURA;
+
+-- 4. Quantidade de registros por status do solo
+SELECT STATUS_SOLO, COUNT(*) AS TOTAL
+FROM SENSORES_FARMTECH
+GROUP BY STATUS_SOLO;
+
+-- 5. Leituras em que a irrigação foi acionada
+SELECT *
+FROM SENSORES_FARMTECH
+WHERE IRRIGACAO = 'ON';
+
+-- 6. Média de temperatura por cultura
+SELECT CULTURA, AVG(TEMPERATURA) AS MEDIA_TEMPERATURA
+FROM SENSORES_FARMTECH
+GROUP BY CULTURA;
+
+-- 7. Leituras com solo seco e irrigação ligada
+SELECT ID, DATA_HORA, CULTURA, UMIDADE, PH, IRRIGACAO, STATUS_SOLO
+FROM SENSORES_FARMTECH
+WHERE STATUS_SOLO = 'SECO'
+AND IRRIGACAO = 'ON';
+
+-- 8. Culturas com maior média de chuva
+SELECT CULTURA, AVG(CHUVA_MM) AS MEDIA_CHUVA
+FROM SENSORES_FARMTECH
+GROUP BY CULTURA
+ORDER BY MEDIA_CHUVA DESC;
